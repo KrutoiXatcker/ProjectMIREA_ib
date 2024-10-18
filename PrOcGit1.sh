@@ -13,7 +13,7 @@ function show_help() {
 
 # Функция для вывода пользователей
 function list_users() {
-    if [[ -n "$log_file" ]]; then
+    if [ -n "$log_file" ]; then
         getent passwd | awk -F: '{print $1 ": " $6}' | sort > "$log_file" 2>/dev/null
     else
         getent passwd | awk -F: '{print $1 ": " $6}' | sort
@@ -22,7 +22,7 @@ function list_users() {
 
 # Функция для вывода процессов
 function list_processes() {
-    if [[ -n "$log_file" ]]; then
+    if [ -n "$log_file" ]; then
         ps -eo pid,comm --sort=pid > "$log_file" 2>/dev/null
     else
         ps -eo pid,comm --sort=pid
@@ -64,6 +64,6 @@ while [[ "$1" != "" ]]; do
 done
 
 # Переадресация ошибок, если указан путь для ошибок
-if [[ -n "$error_file" ]]; then
+if [ -n "$error_file" ]; then
     exec 2>>"$error_file"
 fi
